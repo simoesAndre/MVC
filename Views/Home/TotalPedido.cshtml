@@ -1,0 +1,27 @@
+@model List<ItemPedido>
+
+<h2>Listagem dos Pedidos Cadastrados</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Valor Unitário</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{double TotalPedido = 0;}
+        @foreach(ItemPedido a in Model)
+        {
+        <tr>
+            <td>@a.Descricao</td>
+            <td>R$ @a.ValorUnitario</td>
+            <td>@a.Quantidade</td>
+        </tr>
+        TotalPedido = TotalPedido + (a.ValorUnitario*a.Quantidade);
+        }
+    </tbody>
+</table>
+<p>O valor total é: R$ @TotalPedido</p>
+<a asp-action="Item">Cadastrar novo pedido</a>
